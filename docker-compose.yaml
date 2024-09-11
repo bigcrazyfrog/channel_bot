@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  app:
+    container_name: vacancies_bot
+    build: .
+    volumes:
+      - "session:./@nikitkaaaaa.session"
+      - "vacancies:./vacancies.txt"
+
+volumes:
+  session:
+  vacancies:
