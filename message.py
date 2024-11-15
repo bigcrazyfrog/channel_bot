@@ -27,8 +27,8 @@ def get_one_vacancies(channel_name, vacancies_number=5):
 
         s = response.json()
 
-        if s["type"]["id"] != "open":
-            continue
+        # if s["type"]["id"] != "open":
+        #     continue
 
         text += f"▪️ **{s['name']}**\n"
         text += f"{s['employment']['name']}\n"
