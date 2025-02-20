@@ -5,7 +5,7 @@ services:
     container_name: vacancies_bot
     build: .
     volumes:
-      - "session:./@nikitkaaaaa.session"
+      - "session:nikita_avito.session./nikita_avito.session"
       - "vacancies:./vacancies.txt"
 
 volumes:

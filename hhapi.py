@@ -12,7 +12,7 @@ def get_python_vacancies():
 
     res = []
 
-    for page in range(responce.json()["pages"]):
+    for page in range(min(responce.json()["pages"], 20)):
         responce = requests.get('https://api.hh.ru/vacancies', params={"text": "Python OR Питон", "search_field": "name", "schedule": "remote", "page": page})
         responce.raise_for_status()
 
@@ -22,5 +22,6 @@ def get_python_vacancies():
 
 
 def to_file():
+    print("Запись вакансий в файл")
     with codecs.open("vacancies.txt", "w", encoding="utf-8") as file:
         json.dump(get_python_vacancies(), file)

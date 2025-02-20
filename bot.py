@@ -13,11 +13,11 @@ from message import get_one_vacancies
 
 # Reading Configs
 config = configparser.ConfigParser()
-config.read("config-sample.ini")
+config.read("config-exemple.ini")
 
 VACANCIES_NUMBER = int(config["Vacancies"]["number"])
 CHANNEL_NAME = config["Channel"]["name"]
-CHANNEL_ID = config["Channel"]["id"]
+CHANNEL_ID = int(config["Channel"]["id"])
 
 # Setting configuration values
 api_id = config['Telegram']['api_id']
@@ -27,9 +27,10 @@ api_hash = str(api_hash)
 
 phone = config['Telegram']['phone']
 username = config['Telegram']['username']
+session_path = "session/nikita_avito.session"
 
 # Create the client and connect
-client = TelegramClient(username, api_id, api_hash)
+client = TelegramClient(session_path, api_id, api_hash)
 
 
 async def main(phone):
@@ -70,9 +71,15 @@ def set_time():
 
 
 if __name__ == "__main__":
+    print("Bot started")
     to_file()
     set_time()
 
+    print("Тестовая отправка")
+    send_to_channel()
+    print("Успех")
+
+    print("Начало цикла")
     while True:
         schedule.run_pending()
         time.sleep(1)
